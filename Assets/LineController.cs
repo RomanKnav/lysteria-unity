@@ -8,6 +8,7 @@ public class LineController : MonoBehaviour
     private LineRenderer lr;    // line renderer reference.
     // how is the line renderer component passed here?
 
+    // [SerializeField] could I use this to give player access to points?
     private Transform[] points; // what's this? an array of "Transform" objects (reference for the points for our lines)
     /* The Transform class is a built-in Unity class that represents the position, rotation, and 
      * scale of an object in the scene. Each Transform is associated with a GameObject. */
@@ -30,6 +31,7 @@ public class LineController : MonoBehaviour
         this.points = points;               // WE ARE USING FUCKING THIS??? Why are we using this? 
         // I understand: sets points defined at 11 to the points given here!
     }
+    // confused by this func again. Are we setting the length of positionCount? Yes.
 
     // where's this used again? REMEMBER: Update() doesn't need to be manually used. IT'S AUTOMATICALLY CALLED EVERY FRAME:
     private void Update()
