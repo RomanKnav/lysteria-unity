@@ -25,19 +25,21 @@ public class moveScript : MonoBehaviour
 
     private int currPoint = 0;      // refers to INDEX, not actual coord.
 
+    // this is called BEFORE the game plays.
     void Awake() {
         // TODO: get reference to lineRenderer obj/component:  
         // need reference to Line Renderer component and it's positionCount property: 
         // reference to GAME OBJECT ITSELF:
-        GameObject lineRendObject = GameObject.FindGameObjectWithTag("lineRend");
+        GameObject lineRendObject = GameObject.FindGameObjectWithTag("lineRend");   // game obj reference
 
         logic = lineRendObject.GetComponent<LineController>();          // script reference
         lineRenderer = lineRendObject.GetComponent<LineRenderer>();     // LineRenderer reference
     }
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update (and before Awake())
     void Start()
     {
+
         mainCamera = Camera.main;
 
         cameraTop = mainCamera.transform.position.y + mainCamera.orthographicSize;
@@ -66,18 +68,23 @@ public class moveScript : MonoBehaviour
         float gameObjectY = transform.position.y;
         float gameObjectX = transform.position.x;
 
-        // player's position should be set to this:
+        // maybe something like this:
+        // if (logic != null)
+        // {
+        //     positions = logic.GetPositions();
+        // }
 
+        // putting this in Awake() and Start() prints the old values:
         if (lineRenderer != null)
         {
             int positionCount = lineRenderer.positionCount;     // with current setup, this is 3.
-            // for loop simply prints all position coords:
-            // for (int i = 0; i < positionCount; i++)
-            // {
-            //     Vector3 position = lineRenderer.GetPosition(i);
-            //     // Do something with each position
-            //     Debug.Log($"Position {i}: {position}");
-            // }
+            // for loop simply prints all position coords. This prints the correct coords:
+            for (int i = 0; i < positionCount; i++)
+            {
+                Vector3 position = lineRenderer.GetPosition(i);
+                // Do something with each position
+                Debug.Log($"Position {i}: {position}");
+            }
         }
 
 

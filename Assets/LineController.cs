@@ -13,6 +13,20 @@ public class LineController : MonoBehaviour
     /* The Transform class is a built-in Unity class that represents the position, rotation, and 
      * scale of an object in the scene. Each Transform is associated with a GameObject. */
 
+    // MY OWN SHIT: 
+    private Vector3[] positions;
+
+    public void UpdatePositions(Vector3[] newPositions)
+    {
+        positions = newPositions;
+    }
+
+        public Vector3[] GetPositions()
+    {
+        return positions;
+    }
+
+
     // gets the object's component. So what's LineRenderer above? Simply declares the variable TYPE.
     // HERE WE'VE GOT ANOTHER SPECIAL METHOD:  part of the MonoBehaviour class. 
     private void Awake()
