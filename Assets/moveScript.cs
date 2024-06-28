@@ -25,6 +25,16 @@ public class moveScript : MonoBehaviour
 
     private int currPoint = 0;      // refers to INDEX, not actual coord.
 
+    void Awake() {
+        // TODO: get reference to lineRenderer obj/component:  
+        // need reference to Line Renderer component and it's positionCount property: 
+        // reference to GAME OBJECT ITSELF:
+        GameObject lineRendObject = GameObject.FindGameObjectWithTag("lineRend");
+
+        logic = lineRendObject.GetComponent<LineController>();          // script reference
+        lineRenderer = lineRendObject.GetComponent<LineRenderer>();     // LineRenderer reference
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,18 +45,15 @@ public class moveScript : MonoBehaviour
         cameraLeft = mainCamera.transform.position.x - mainCamera.orthographicSize * mainCamera.aspect;
         cameraRight = mainCamera.transform.position.x + mainCamera.orthographicSize * mainCamera.aspect;
 
-        // TODO: get reference to lineRenderer obj/component:  
-        // need reference to Line Renderer component and it's positionCount property: 
-        // reference to GAME OBJECT ITSELF:
-        GameObject lineRendObject = GameObject.FindGameObjectWithTag("lineRend");
-
-
-        if (lineRendObject != null)
+        if (lineRenderer.positionCount > 0)
         {
-            logic = lineRendObject.GetComponent<LineController>();          // script reference
-            lineRenderer = lineRendObject.GetComponent<LineRenderer>();     // LineRenderer reference
-
-            // 
+            Vector3 position = lineRenderer.GetPosition(currPoint);
+            Debug.Log($"Setting initial player position to: {position}");
+            transform.position = position;          // why doesn't this work?
+        }
+        else
+        {
+            Debug.LogError("LineRenderer is null or has no positions.");
         }
 
         // now seems I need to access "points". I'd like to create custom arr property containing them.
@@ -60,7 +67,6 @@ public class moveScript : MonoBehaviour
         float gameObjectX = transform.position.x;
 
         // player's position should be set to this:
-        Vector3 position = lineRenderer.GetPosition(currPoint);
 
         if (lineRenderer != null)
         {
@@ -100,7 +106,5 @@ public class moveScript : MonoBehaviour
 
         // this will run THOUSANDS OF TIMES, like in JS:
         // Debug.Log("Hello, World!");
-
-
     }
 }
