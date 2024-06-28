@@ -15,15 +15,9 @@ public class moveScript : MonoBehaviour
     private float cameraLeft;
     private float cameraRight;
 
-    // needed to change sprite's color:
-    private SpriteRenderer spriteRenderer;
-
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
-        spriteRenderer.color = Color.red;
 
         mainCamera = Camera.main;
 
