@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 // RESPONSIBLE FOR PLAYER MOVEMENT:
 public class moveScript : MonoBehaviour
 {
     // the f denotes its a float (5.0)
+    // this the only public var we have, so it actually shows in Inspector:
     public float moveSpeed = 500f;
+    public LineController logic;    // if given filename that doesn't exist in project, error. How does it know LineController exists? Who cares, it works.
 
     // what's rigidBody2D again? gives physics to object (makes it fall off-screen)
 
@@ -16,9 +19,13 @@ public class moveScript : MonoBehaviour
     private float cameraLeft;
     private float cameraRight;
 
+
     // Start is called before the first frame update
     void Start()
     {
+
+        // TODO: get reference to lineRenderer obj/component:   
+        logic = GameObject.FindGameObjectWithTag("lineRend").GetComponent<LineController>();
 
         mainCamera = Camera.main;
 
