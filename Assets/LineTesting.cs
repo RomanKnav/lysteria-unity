@@ -11,7 +11,7 @@ public class LineTesting : MonoBehaviour
 
     private void Start()
     {
-        lines.SetUpLine(points);    // how the fuck is this accessed? Through the passed-in LineController object.
+        lines.SetUpLine(points);    // how the fuck is this accessed? Through the passed-in LineController object above.
+        // remember: SetUpLine() takes arr of points (Transform components, which contain an obj's coords)
     }
 }
-

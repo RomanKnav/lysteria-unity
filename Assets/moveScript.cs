@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// RESPONSIBLE FOR PLAYER MOVEMENT:
 public class moveScript : MonoBehaviour
 {
     // the f denotes its a float (5.0)
@@ -56,6 +57,10 @@ public class moveScript : MonoBehaviour
         
 
         transform.position += moveDirection.normalized * moveSpeed * Time.deltaTime;
+
+        // this will run THOUSANDS OF TIMES, like in JS:
+        // Debug.Log("Hello, World!");
+
 
     }
 }
