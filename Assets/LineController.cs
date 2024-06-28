@@ -21,7 +21,7 @@ public class LineController : MonoBehaviour
         lr = GetComponent<LineRenderer>();      // this has a given num of "positions" that make up the line
     }
 
-    // what's this func do? Custom func (used in linTesting).
+    // what's this func do? the points are passed in via LineTesting.cs (where func is used):
     public void SetUpLine(Transform[] points)   // arr of transform components? Yes. This doesn't take in already defined "points" -just name of parameter
     {
         // is this a custom var? Nope. Line Renderer property
@@ -39,7 +39,12 @@ public class LineController : MonoBehaviour
         for (int i = 0; i < points.Length; i++)
         {
             // Line Renderer SetPosition() method: used to set the position of a specific vertex in a line
+            // THIS IS RESPONSIBLE for adding values in "Positions" property:
             lr.SetPosition(i, points[i].position);      // .position is a Vector3: (0, 0, 0)
+
+            /* this func is responsible for the "Positions" arr seen in the Line Renderer comp, composed of an index and (X, Y, Z) coords.          
+    
+            */
         }
     }
 }

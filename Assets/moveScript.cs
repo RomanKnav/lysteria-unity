@@ -20,8 +20,10 @@ public class moveScript : MonoBehaviour
 
     // LINE STUFF:
     public LineController logic;    // if given filename that doesn't exist in project, error. How does it know LineController exists? Who cares, it works.
+    // ^ why's this public?
     private LineRenderer lineRenderer;  // reference to obj's LineRenderer component. 
 
+    private int currPoint = 0;      // refers to INDEX, not actual coord.
 
     // Start is called before the first frame update
     void Start()
@@ -38,13 +40,17 @@ public class moveScript : MonoBehaviour
         // reference to GAME OBJECT ITSELF:
         GameObject lineRendObject = GameObject.FindGameObjectWithTag("lineRend");
 
+
         if (lineRendObject != null)
         {
             logic = lineRendObject.GetComponent<LineController>();          // script reference
             lineRenderer = lineRendObject.GetComponent<LineRenderer>();     // LineRenderer reference
+
+            // 
         }
 
-        // now seems I need to access "points". 
+        // now seems I need to access "points". I'd like to create custom arr property containing them.
+        // I need to access LR's Positions arr (composed of point's Transform comps)
     }
 
     // Update is called once per frame
@@ -52,6 +58,21 @@ public class moveScript : MonoBehaviour
     {
         float gameObjectY = transform.position.y;
         float gameObjectX = transform.position.x;
+
+        // player's position should be set to this:
+        Vector3 position = lineRenderer.GetPosition(currPoint);
+
+        if (lineRenderer != null)
+        {
+            int positionCount = lineRenderer.positionCount;     // with current setup, this is 3.
+            // for loop simply prints all position coords:
+            // for (int i = 0; i < positionCount; i++)
+            // {
+            //     Vector3 position = lineRenderer.GetPosition(i);
+            //     // Do something with each position
+            //     Debug.Log($"Position {i}: {position}");
+            // }
+        }
 
 
         // this is simply a vector object:

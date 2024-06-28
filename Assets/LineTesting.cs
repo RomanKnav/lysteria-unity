@@ -7,6 +7,7 @@ public class LineTesting : MonoBehaviour
 {
     // even though these are private, fields are still made for them in inspector. How? because [SerializeField]
     [SerializeField] private Transform[] points;     // quantity can be given in inspector
+    // ^ this creates custom "Points" array in the script component, where we can drag our point objects. Accesses the Objs' Transform comp.
     [SerializeField] private LineController lines;   // reference to line to draw. THIS is a GAME OBJECT
 
     private void Start()
