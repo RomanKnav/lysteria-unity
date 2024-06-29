@@ -4,7 +4,7 @@ using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 // RESPONSIBLE FOR PLAYER MOVEMENT:
-public class moveScript : MonoBehaviour
+public class MoveScript : MonoBehaviour
 {
     // the f denotes its a float (5.0)
     // this the only public var we have, so it actually shows in Inspector:
@@ -23,18 +23,9 @@ public class moveScript : MonoBehaviour
     // ^ why's this public?
     private LineRenderer lineRenderer;  // reference to obj's LineRenderer component. 
 
-    private int currPoint = 0;      // refers to INDEX, not actual coord.
+    private int currPoint = 0;      // refers to INDEX, not actual coord. 
 
     // this is called BEFORE the game plays.
-    void Awake() {
-        // TODO: get reference to lineRenderer obj/component:  
-        // need reference to Line Renderer component and it's positionCount property: 
-        // reference to GAME OBJECT ITSELF:
-        GameObject lineRendObject = GameObject.FindGameObjectWithTag("lineRend");   // game obj reference
-
-        logic = lineRendObject.GetComponent<LineController>();          // script reference
-        lineRenderer = lineRendObject.GetComponent<LineRenderer>();     // LineRenderer reference
-    }
 
     // Start is called before the first frame update (and before Awake())
     void Start()
@@ -46,17 +37,6 @@ public class moveScript : MonoBehaviour
         cameraBottom = mainCamera.transform.position.y - mainCamera.orthographicSize;
         cameraLeft = mainCamera.transform.position.x - mainCamera.orthographicSize * mainCamera.aspect;
         cameraRight = mainCamera.transform.position.x + mainCamera.orthographicSize * mainCamera.aspect;
-
-        if (lineRenderer.positionCount > 0)
-        {
-            Vector3 position = lineRenderer.GetPosition(currPoint);
-            Debug.Log($"Setting initial player position to: {position}");
-            transform.position = position;          // why doesn't this work?
-        }
-        else
-        {
-            Debug.LogError("LineRenderer is null or has no positions.");
-        }
 
         // now seems I need to access "points". I'd like to create custom arr property containing them.
         // I need to access LR's Positions arr (composed of point's Transform comps)
@@ -75,17 +55,6 @@ public class moveScript : MonoBehaviour
         // }
 
         // putting this in Awake() and Start() prints the old values:
-        if (lineRenderer != null)
-        {
-            int positionCount = lineRenderer.positionCount;     // with current setup, this is 3.
-            // for loop simply prints all position coords. This prints the correct coords:
-            for (int i = 0; i < positionCount; i++)
-            {
-                Vector3 position = lineRenderer.GetPosition(i);
-                // Do something with each position
-                Debug.Log($"Position {i}: {position}");
-            }
-        }
 
 
         // this is simply a vector object:
@@ -109,7 +78,7 @@ public class moveScript : MonoBehaviour
         }
         
 
-        transform.position += moveDirection.normalized * moveSpeed * Time.deltaTime;
+        transform.position += moveSpeed * Time.deltaTime * moveDirection.normalized;
 
         // this will run THOUSANDS OF TIMES, like in JS:
         // Debug.Log("Hello, World!");
