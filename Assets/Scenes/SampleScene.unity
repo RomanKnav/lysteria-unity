@@ -644,7 +644,7 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0.73, z: 0}
+  - {x: -3.99, y: 0, z: 0}
   - {x: 0, y: 3.55, z: 0}
   m_Parameters:
     serializedVersion: 3
@@ -810,7 +810,7 @@ Transform:
   m_GameObject: {fileID: 1950046383}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.65, y: 2.87, z: 0}
+  m_LocalPosition: {x: 2.95, y: 2.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

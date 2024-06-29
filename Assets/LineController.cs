@@ -13,20 +13,6 @@ public class LineController : MonoBehaviour
     /* The Transform class is a built-in Unity class that represents the position, rotation, and 
      * scale of an object in the scene. Each Transform is associated with a GameObject. */
 
-    // MY OWN SHIT: 
-    private Vector3[] positions;
-
-    public void UpdatePositions(Vector3[] newPositions)
-    {
-        positions = newPositions;
-    }
-
-        public Vector3[] GetPositions()
-    {
-        return positions;
-    }
-
-
     // gets the object's component. So what's LineRenderer above? Simply declares the variable TYPE.
     // HERE WE'VE GOT ANOTHER SPECIAL METHOD:  part of the MonoBehaviour class. 
     private void Awake()
@@ -57,10 +43,11 @@ public class LineController : MonoBehaviour
             lr.SetPosition(i, points[i].position);      // .position is a Vector3: (0, 0, 0)
 
             /* this func is responsible for the "Positions" arr seen in the Line Renderer comp, composed of an index and (X, Y, Z) coords.          
-    
+            
             */
         }
     }
 }
 
 // WTF ARE TRANSFORM OBJS? Not objects, COMPONENTS. The very first one that ALL game objects have, lmfao.
+// what's responsible for accessing the point objects? Remember, we drag the point objects into LineTesting.
