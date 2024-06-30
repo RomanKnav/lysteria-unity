@@ -10,6 +10,9 @@ public class MoveScript : MonoBehaviour
     // this the only public var we have, so it actually shows in Inspector:
     public float moveSpeed = 500f;
 
+    public string direction;    // value should be set by LineController.
+
+
     // what's rigidBody2D again? gives physics to object (makes it fall off-screen)
 
     private Camera mainCamera;
@@ -24,6 +27,7 @@ public class MoveScript : MonoBehaviour
     private LineRenderer lineRenderer;  // reference to obj's LineRenderer component. 
 
     private int currPoint = 0;      // refers to INDEX, not actual coord. 
+
 
     // this is called BEFORE the game plays.
 
@@ -48,21 +52,11 @@ public class MoveScript : MonoBehaviour
         float gameObjectY = transform.position.y;
         float gameObjectX = transform.position.x;
 
-        // maybe something like this:
-        // if (logic != null)
-        // {
-        //     positions = logic.GetPositions();
-        // }
-
-        // putting this in Awake() and Start() prints the old values:
-
-
         // this is simply a vector object:
-        Vector3 moveDirection = Vector3.zero;       // shorthand for: (0, 0, 0)
-
+        Vector3 moveDirection = Vector3.zero;     // shorthand for: (0, 0, 0)
         if (Input.GetKey(KeyCode.W) && gameObjectY < cameraTop)
         {
-            moveDirection += Vector3.up;
+           moveDirection += Vector3.up;
         }
         if (Input.GetKey(KeyCode.A) && gameObjectX > cameraLeft)
         {

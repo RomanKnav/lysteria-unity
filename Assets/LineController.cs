@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Used by Line Renderer game obj. WHAT EXACTLY DOES THIS DO? sets up the points to draw the line at. 
+// TODO: pass player component here and set it's "direction" property to that of the current point.
+// this does NOT keep track of the current point. 
+// IDEA: update currPoint when player has reached it.
 public class LineController : MonoBehaviour
 {
-    private LineRenderer lr;    // line renderer reference.
-    // how is the line renderer component passed here?
+    public int currPoint;
+    
+    private LineRenderer lr;    // line renderer COMPONENT reference.
+    // how is the line renderer component passed here? on line 21
 
     // [SerializeField] could I use this to give player access to points?
+    // this gets ONLY the trans comp, not whole object.
     private Transform[] points; // what's this? an array of "Transform" objects (reference for the points for our lines)
     /* The Transform class is a built-in Unity class that represents the position, rotation, and 
      * scale of an object in the scene. Each Transform is associated with a GameObject. */
